@@ -4,15 +4,15 @@ import IotDevice from '#models/iot_device'
 
 export default class IotService {
   private client: mqtt.MqttClient | null = null
-
-  constructor() {
-    this.connect()
-  }
+  private isConnected: boolean = false
 
   /**
    * Connect to MQTT broker
    */
-  private connect() {
+  connect() {
+    if (this.isConnected || this.client) {
+      return
+    }
     this.client = mqtt.connect(iotConfig.mqtt.brokerUrl, {
       username: iotConfig.mqtt.username,
       password: iotConfig.mqtt.password,
@@ -21,6 +21,7 @@ export default class IotService {
 
     this.client.on('connect', () => {
       console.log('Connected to MQTT broker')
+      this.isConnected = true
       this.subscribeToTopics()
     })
 
@@ -99,6 +100,12 @@ export default class IotService {
    * Send command to device
    */
   async sendCommand(deviceId: string, command: string, payload: any = {}) {
+    if (!this.isConnected) {
+      this.connect()
+      // Wait for connection
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+    }
+    
     if (!this.client) {
       throw new Error('MQTT client not connected')
     }
@@ -128,6 +135,7 @@ export default class IotService {
     if (this.client) {
       this.client.end()
       this.client = null
+      this.isConnected = false
     }
   }
 }

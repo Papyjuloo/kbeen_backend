@@ -39,7 +39,7 @@ export default class PaymentsController {
     const payment = await Payment.create({
       reservationId,
       stripePaymentIntentId: paymentIntent.id,
-      amount: paymentIntent.amount,
+      amount: paymentIntent.amount / 100, // Convert from cents to decimal
       currency: paymentIntent.currency,
       status: 'succeeded',
       metadata: paymentIntent.metadata,

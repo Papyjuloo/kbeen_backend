@@ -19,7 +19,7 @@ export default class QrCode extends BaseModel {
   @column()
   declare isActive: boolean
 
-  @column()
+  @column.dateTime()
   declare scannedAt: DateTime | null
 
   @column.dateTime()

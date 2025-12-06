@@ -41,7 +41,7 @@ export default class PaymentService {
     return this.stripe.refunds.create(refundParams)
   }
 
-  async handleWebhook(payload: any) {
+  async handleWebhook(payload: { headers: Record<string, string>; body: string }) {
     const sig = payload.headers['stripe-signature']
     const webhookSecret = env.get('STRIPE_WEBHOOK_SECRET')
 
