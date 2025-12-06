@@ -1,0 +1,47 @@
+{
+  "name": "kbeen-backend",
+  "version": "1.0.0",
+  "description": "Backend AdonisJS avec Auth, Reservations, Payments, QR Code et IoT",
+  "type": "module",
+  "scripts": {
+    "dev": "node ace serve --watch",
+    "build": "node ace build",
+    "start": "node build/bin/server.js",
+    "test": "node ace test",
+    "lint": "eslint . --ext=.ts",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@adonisjs/assembler": "^7.0.0",
+    "@adonisjs/eslint-config": "^1.0.0",
+    "@adonisjs/prettier-config": "^1.0.0",
+    "@adonisjs/tsconfig": "^1.0.0",
+    "@japa/api-client": "^2.0.0",
+    "@japa/assert": "^2.0.0",
+    "@japa/runner": "^3.0.0",
+    "@types/node": "^20.10.0",
+    "eslint": "^8.55.0",
+    "pino-pretty": "^10.3.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@adonisjs/auth": "^9.0.0",
+    "@adonisjs/core": "^6.0.0",
+    "@adonisjs/cors": "^2.0.0",
+    "@adonisjs/lucid": "^20.0.0",
+    "@adonisjs/session": "^7.0.0",
+    "@vinejs/vine": "^1.7.0",
+    "luxon": "^3.4.4",
+    "pg": "^8.11.3",
+    "redis": "^4.6.11",
+    "mqtt": "^5.3.0",
+    "qrcode": "^1.5.3",
+    "stripe": "^14.8.0"
+  },
+  "prettier": "@adonisjs/prettier-config",
+  "eslintConfig": {
+    "extends": "@adonisjs/eslint-config/app"
+  }
+}
