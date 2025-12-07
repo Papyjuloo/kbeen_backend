@@ -1,0 +1,10 @@
+node_modules
+build
+.env
+.DS_Store
+tmp
+.vscode
+.idea
+*.log
+coverage
+.adonisrc.json
